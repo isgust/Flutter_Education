@@ -67,14 +67,24 @@ class AppBarDemo extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('flutter_application_1/flutter_teste/assets/images/profile.jpg'),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Ana Lucia',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                ],
               ),
             ),
+
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
