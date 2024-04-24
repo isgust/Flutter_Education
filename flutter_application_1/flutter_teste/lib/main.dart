@@ -1,6 +1,8 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_teste/about_page.dart';
+import 'package:flutter_teste/home_page.dart';
 import 'package:flutter_teste/settings_screen.dart';
 
 class AppBarDemo extends StatelessWidget {
@@ -13,7 +15,14 @@ class AppBarDemo extends StatelessWidget {
     
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xF447198), // Cor de fundo do AppBar
+        backgroundColor: Color(0xFF3A6A90), // Cor de fundo do AppBar
+        iconTheme: IconThemeData(
+          color: Colors.white, 
+        ),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+        ),
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.menu),
@@ -66,8 +75,9 @@ class AppBarDemo extends StatelessWidget {
           // Defina os itens no Drawer
           children: [
             DrawerHeader(
+              
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color(0xFF3A6A90),
               ),
               child: Column(
                 children: [
@@ -92,6 +102,10 @@ class AppBarDemo extends StatelessWidget {
               onTap: () {
                 // Ação ao selecionar "Home"
                 Navigator.pop(context); // Fechar o Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
               },
             ),
             ListTile(
@@ -112,6 +126,10 @@ class AppBarDemo extends StatelessWidget {
               onTap: () {
                 // Ação ao selecionar "About"
                 Navigator.pop(context); // Fechar o Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutPage()),
+                );
               },
             ),
           ],
