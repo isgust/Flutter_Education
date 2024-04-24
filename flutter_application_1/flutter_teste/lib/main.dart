@@ -23,7 +23,7 @@ class AppBarDemo extends StatelessWidget {
           ),
         ),
         title: Text(
-          'AppBar Title',
+          'Instagram',
         ),
         actions: [
           IconButton(
@@ -71,7 +71,7 @@ class AppBarDemo extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('flutter_application_1/flutter_teste/assets/images/profile.jpg'),
+                    backgroundImage: AssetImage('assets/images/profile.jpg'),
                   ),
                   SizedBox(height: 10),
                   Text(
