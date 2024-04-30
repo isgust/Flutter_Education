@@ -1,23 +1,41 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_teste/about_page.dart';
 import 'package:flutter_teste/home_page.dart';
 import 'package:flutter_teste/settings_screen.dart';
+import 'package:device_preview/device_preview.dart';
 
-class AppBarDemo extends StatelessWidget {
+class AppBarDemo extends StatefulWidget {
   const AppBarDemo({Key? key}) : super(key: key);
 
   @override
+  _AppBarDemoState createState() => _AppBarDemoState();
+}
+
+class _AppBarDemoState extends State<AppBarDemo> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Comentários'),
+    Text('Agenda'),
+    Text('Conta'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // Obtenha uma instância de MaterialLocalizations para acessar os textos localizados
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
-    
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF3A6A90), // Cor de fundo do AppBar
+        backgroundColor: Color(0xFF3A6A90),
         iconTheme: IconThemeData(
-          color: Colors.white, 
+          color: Colors.white,
         ),
         titleTextStyle: TextStyle(
           color: Colors.white,
@@ -28,14 +46,11 @@ class AppBarDemo extends StatelessWidget {
             icon: const Icon(Icons.menu),
             tooltip: localizations.openAppDrawerTooltip,
             onPressed: () {
-              // Abre o Drawer ao clicar no ícone do menu
               Scaffold.of(context).openDrawer();
             },
           ),
         ),
-        title: Text(
-          'Instagram',
-        ),
+        title: Text('Instagram'),
         actions: [
           IconButton(
             tooltip: 'Favorite',
@@ -65,17 +80,12 @@ class AppBarDemo extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text(
-          'Home Tab',
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      // Adiciona o Drawer ao Scaffold
       drawer: Drawer(
         child: ListView(
-          // Defina os itens no Drawer
           children: [
             DrawerHeader(
-              
               decoration: BoxDecoration(
                 color: Color(0xFF3A6A90),
               ),
@@ -86,8 +96,8 @@ class AppBarDemo extends StatelessWidget {
                     backgroundImage: AssetImage('assets/images/profile.jpg'),
                   ),
                   Text(
-                      'Ana Lucia',
-                      style: TextStyle(
+                    'Rihanna Rocha',
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                     ),
@@ -95,25 +105,21 @@ class AppBarDemo extends StatelessWidget {
                 ],
               ),
             ),
-
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
               onTap: () {
-                // Ação ao selecionar "Home"
-                Navigator.pop(context); // Fechar o Drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
+                Navigator.pop(context);
+                setState(() {
+                  _selectedIndex = 0;
+                });
               },
             ),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
               onTap: () {
-                // Ação ao selecionar "Settings"
-                Navigator.pop(context); // Fechar o Drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SettingsScreen()),
@@ -124,8 +130,7 @@ class AppBarDemo extends StatelessWidget {
               leading: Icon(Icons.info),
               title: Text('About'),
               onTap: () {
-                // Ação ao selecionar "About"
-                Navigator.pop(context); // Fechar o Drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AboutPage()),
@@ -134,6 +139,26 @@ class AppBarDemo extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF3A6A90),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.comment),
+            label: 'Comentários',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: 'Agenda',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Conta',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color.fromARGB(255, 212, 237, 237),
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -147,23 +172,23 @@ void main() {
     ),
   );
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: DevicePreview.appBuilder,
       title: 'AppBar Demo',
       localizationsDelegates: const [
-        // Configurações para internacionalização com flutter_localizations
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        // Lista de idiomas suportados
-        Locale('en', 'US'), // Inglês
-        Locale('pt', 'BR'), // Português do Brasil
+        Locale('en', 'US'),
+        Locale('pt', 'BR'),
       ],
       home: const AppBarDemo(),
     );
