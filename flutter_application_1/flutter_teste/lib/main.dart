@@ -79,9 +79,23 @@ class _AppBarDemoState extends State<AppBarDemo> {
           ),
         ],
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+     body: Center(
+      child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+          _widgetOptions.elementAt(_selectedIndex),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+             
+            },
+            child: Text('Adicionar'),
+          ),
+          
+      ],
+       ),
+    ),
+
       drawer: Drawer(
         child: ListView(
           children: [
@@ -156,7 +170,7 @@ class _AppBarDemoState extends State<AppBarDemo> {
             label: 'Conta',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex, 
         selectedItemColor: Color.fromARGB(255, 212, 237, 237),
         onTap: _onItemTapped,
       ),
