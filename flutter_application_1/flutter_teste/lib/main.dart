@@ -35,10 +35,10 @@ class _AppBarDemoState extends State<AppBarDemo> {
       appBar: AppBar(
         backgroundColor: Color(0xFF3A6A90),
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: Color(0xFF3A6A90),
         ),
         titleTextStyle: TextStyle(
-          color: Colors.white,
+          color: Color(0xFF3A6A90),
           fontSize: 20,
         ),
         leading: Builder(
@@ -50,7 +50,7 @@ class _AppBarDemoState extends State<AppBarDemo> {
             },
           ),
         ),
-        title: Text('Instagram'),
+        title: Text('Visual Journey'),
         actions: [
           IconButton(
             tooltip: 'Favorite',
@@ -66,13 +66,13 @@ class _AppBarDemoState extends State<AppBarDemo> {
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
-                  child: Text('First'),
+                  child: Text('Politica de Privacidade'),
                 ),
                 PopupMenuItem(
-                  child: Text('Second'),
+                  child: Text('Ajuda'),
                 ),
                 PopupMenuItem(
-                  child: Text('Third'),
+                  child: Text('Enviar feedback'),
                 ),
               ];
             },
@@ -158,16 +158,16 @@ class _AppBarDemoState extends State<AppBarDemo> {
         backgroundColor: Color(0xFF3A6A90),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.comment),
-            label: 'Comentários',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.event),
-            label: 'Agenda',
+            icon: Icon(Icons.explore_rounded),
+            label: 'Explorar',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            label: 'Conta',
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex, 
